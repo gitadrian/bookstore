@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<beans xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd 
+	   http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+	   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd  
+	   http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+	   http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+	
+
+	<bean class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close" id="dataSource">
+		<property name="driverClassName" value="org.hsqldb.jdbcDriver" />
+		<property name="url" value="jdbc:hsqldb:mem:examples" />
+		<property name="username" value="sa" />
+		<property name="password" value="" />
+	</bean>
+
+	<tx:annotation-driven />
+
+	<context:component-scan base-package="com.stk.bookstore" />
+
+
+
+	<bean id="jpaVendorAdapter"
+		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+		<property name="database" value="HSQL" />
+		<property name="databasePlatform" value="org.hibernate.dialect.HSQLDialect" />
+	</bean>
+
+
+
+	<bean class="org.springframework.orm.jpa.JpaTransactionManager"
+		id="transactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+
+	<bean
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
+		id="entityManagerFactory">
+		<property name="persistenceUnitName" value="movie-rental" />
+		<property name="dataSource" ref="dataSource" />
+		<property name="jpaDialect">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaDialect" />
+		</property>
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">create-drop</prop>
+				<prop key="hibernate.ejb.naming_strategy">org.hibernate.cfg.ImprovedNamingStrategy</prop>
+			</props>
+		</property>
+	</bean>
+
+
+	<jdbc:initialize-database data-source="dataSource">
+		<jdbc:script location="classpath:database/bookStore-db.sql" />
+	</jdbc:initialize-database>
+
+	<security:http>
+		<security:intercept-url pattern="/login*" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+		<security:intercept-url pattern="/admin*" access="ROLE_ADMIN"/>
+		<security:intercept-url pattern="/createbook" access="ROLE_ADMIN"/>
+		<security:form-login login-page=""/>
+		<security:logout logout-url="" logout-success-url=""/>
+		
+	</security:http>
+	
+	<security:authentication-manager>
+		<security:authentication-provider>
+			<security:user-service>
+				<security:user name="admin" password="123" authorities="ROLE_ADMIN"/>
+			</security:user-service>
+		</security:authentication-provider>
+	</security:authentication-manager>
+	
+
+
+</beans>
