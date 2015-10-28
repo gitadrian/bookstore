@@ -23,7 +23,6 @@ public class BookstoreController {
 
 		ModelAndView model = new ModelAndView();
 		model.addObject("books",bookstoreService.getAllBooks());
-		System.out.println(bookstoreService.getAllBooks());
 		model.setViewName("index");
 		return model;
 	}

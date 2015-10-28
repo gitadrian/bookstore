@@ -18,7 +18,7 @@
 	Price: ${createdbook.price} <br><br>
 	Quantity: ${createdbook.quantity} <br><br>
 	Category: ${createdbook.category_Id.name} <br><br>
-	
+	Description: ${createdbook.description} <br><br>
 	<a href="${pageContext.request.contextPath}">Home</a> | <a href="createbook">Create new book</a>
 	
 </body>

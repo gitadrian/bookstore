@@ -24,7 +24,6 @@ public class CreateBookController {
 		BookEntity bookEntity = new BookEntity();
 		model.addObject("book", bookEntity);
 		model.addObject("categories", bookstoreService.getAllCategories());
-		System.out.println(bookstoreService.getCategoryById(1));
 		return model;
 	}
 

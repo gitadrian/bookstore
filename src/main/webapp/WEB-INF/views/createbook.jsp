@@ -16,9 +16,10 @@
 		Publisher: <form:input path="publisher"/><br><br>
 		Price: <form:input path="price"/><br><br>
 		Quantity: <form:input path="quantity"/><br><br>
-		Categories: <form:select path="category_Id" items="${categories}" itemLabel="name" itemValue="categoryId">
+		Category: <form:select path="category_Id" items="${categories}" itemLabel="name" itemValue="categoryId">
+		</form:select><br><br>
+		Description: <form:textarea path="description"/><br><br>
 		
-		</form:select>
 		<input type="submit">
 	</form:form>
 	
