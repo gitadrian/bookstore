@@ -32,7 +32,7 @@
 				<td>${books.price}</td>
 				<td>${books.quantity}</td>
 				<td>${books.description}</td>
-				<td></td>
+				<td><a href="/edit?id=${books.book_id}">Edit</a> | <a href="/delete?id=${books.book_id}">Delete</a></td>
 			</tr>
 
 
