@@ -37,6 +37,10 @@ public class BookstoreRepository {
 		return (BookEntity) em.createNativeQuery("SELECT * FROM BOOK where book_id=:id", BookEntity.class).setParameter("id", id).getSingleResult();
 	}
 	
+	public List<BookEntity> findBooksByCategoryName(String category){
+		return em.createNativeQuery("SELECT * FROM BOOK JOIN CATEGORY ON book.category_id = category.category_id WHERE category.name =:category", BookEntity.class).setParameter("category", category).getResultList();
+	}
+	
 	public List<CategoryEntity> findAllCategories() {
 		return em.createNativeQuery("SELECT * FROM CATEGORY", CategoryEntity.class).getResultList();
 

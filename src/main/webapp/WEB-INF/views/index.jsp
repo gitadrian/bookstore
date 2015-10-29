@@ -16,7 +16,7 @@
 <body>
 	<nav class="navbar navbar-default navbar-static-top">
   		<div class="container">
-   		 <h1>Bookstore</h1>
+   		 <a href="${pageContext.request.contextPath}"><h1>Bookstore</h1></a>
   		</div>
 	</nav>
 
@@ -26,7 +26,7 @@
   			<h2>Categories</h2>
   			<ul>
   				<c:forEach items="${categories}" var="categories">
-					<li><a href="category/${categories.name}">${categories.name}</a></li>
+					<li><a href="${pageContext.request.contextPath}/category/${categories.name}">${categories.name}</a></li>
 			
 				</c:forEach> 
   				

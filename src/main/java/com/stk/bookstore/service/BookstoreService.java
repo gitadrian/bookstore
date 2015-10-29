@@ -23,6 +23,10 @@ public class BookstoreService {
 		return bookstoreRepository.findAllBooks();
 	}
 	
+	public List<BookEntity> getBooksByCategoryName(String category){
+		return bookstoreRepository.findBooksByCategoryName(category);
+	}
+	
 	public BookEntity getBookById(Integer id){
 		return bookstoreRepository.findBookById(id);
 	}

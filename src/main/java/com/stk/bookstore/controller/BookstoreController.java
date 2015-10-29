@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -25,6 +26,16 @@ public class BookstoreController {
 		model.addObject("books",bookstoreService.getAllBooks());
 		model.addObject("categories", bookstoreService.getAllCategories());
 		model.setViewName("index");
+		return model;
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/category/{category}")
+	public ModelAndView showBooksByCategory(@PathVariable String category) {
+
+		ModelAndView model = new ModelAndView();
+		model.addObject("categories", bookstoreService.getAllCategories());
+		model.addObject("books", bookstoreService.getBooksByCategoryName(category));
+		model.setViewName("category");
 		return model;
 	}
 
