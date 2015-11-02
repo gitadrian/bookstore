@@ -4,11 +4,8 @@
              version="2.0">
    <persistence-unit name="movie-rental" transaction-type="RESOURCE_LOCAL">
    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-      <class>com.stk.movie.model.CustomerEntity</class>
-      <class>com.stk.movie.model.MovieEntity</class>
-      <class>com.stk.movie.model.MovieRentalEntity</class>
-      <class>com.stk.movie.model.RolesEntity</class>
-      <class>com.stk.movie.model.UserEntity</class>
+      <class>com.stk.bookstore.model.BookEntity</class>
+      
       <properties>
          <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
          <property name="hibernate.hbm2ddl.auto" value="validate"/>

@@ -38,4 +38,9 @@ public class BookstoreService {
 	public CategoryEntity getCategoryById(Integer id){
 		return bookstoreRepository.findCategoryById(id);
 	}
+	
+	public void removeBook(Integer id){
+		bookstoreRepository.deleteBook(id);
+	}
+	
 }

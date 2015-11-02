@@ -54,5 +54,9 @@ public class BookstoreRepository {
 		
 		em.persist(bookEntity);
 	}
+	
+	public void deleteBook(Integer id){
+		em.remove(em.find(BookEntity.class, id));
+	}
 
 }

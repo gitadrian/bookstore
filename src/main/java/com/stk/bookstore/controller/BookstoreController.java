@@ -38,5 +38,22 @@ public class BookstoreController {
 		model.setViewName("category");
 		return model;
 	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/bookdetails/{id}")
+	public ModelAndView showBookDetails(@PathVariable Integer id) {
+
+		ModelAndView model = new ModelAndView();
+		model.addObject("books", bookstoreService.getBookById(id));
+		model.setViewName("details");
+		return model;
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/delete/{id}")
+	public String deleteBook(@PathVariable Integer id){
+		
+		bookstoreService.removeBook(id);
+		
+		return "index";
+	}
 
 }

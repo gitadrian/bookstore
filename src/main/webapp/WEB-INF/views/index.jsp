@@ -39,11 +39,8 @@
   		<h1>Books</h1>
 		<c:forEach items="${books}" var="books">
 			${books.title} <br>
-			Year: ${books.year}<br>
-			Description: ${books.description}<br>
-			Category: ${books.category_Id.name}<br>
 			Price: $ ${books.price}<br>
-			<a href="${pageContext.request.contextPath}/addtocart?id=${books.book_id}">Add to cart</a><br><br>
+			<a href="${pageContext.request.contextPath}/bookdetails/${books.book_id}">View Details</a><br><br>
 		</c:forEach> 
 		
 		<br><br><a href="${pageContext.request.contextPath}/j_spring_security_logout">Logout</a>
