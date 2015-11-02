@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -65,9 +66,15 @@ public class BookstoreController {
 		return model;
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, value = "edit/editbook/")
-	public void editBook(BookEntity book){
+	@RequestMapping(method = RequestMethod.GET, value = "edit/editbook")
+	public ModelAndView editBook(@ModelAttribute BookEntity book){
 		System.out.println(book);
+		ModelAndView model = new ModelAndView();
+		model.addObject("book", book);
+		bookstoreService.editPrice(book);
+		model.setViewName("index");
+		return model;
+		
 	}
 
 }

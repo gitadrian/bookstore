@@ -43,8 +43,8 @@ public class BookstoreService {
 		bookstoreRepository.deleteBook(id);
 	}
 	
-	public void editPrice(){
-		
+	public void editPrice(BookEntity bookEntity){
+		bookstoreRepository.updatePrice(bookEntity);
 	}
 	
 }

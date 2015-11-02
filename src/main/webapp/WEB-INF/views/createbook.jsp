@@ -14,7 +14,7 @@
 <body>
 	<h1>Create new book</h1>
 
-	<form:form commandName="books" method="POST" action="createbookaction">
+	<form:form commandName="book" method="POST" action="createbookaction">
 		Title: <form:input path="title" />
 		<br>
 		<br>
