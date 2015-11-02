@@ -71,7 +71,6 @@ public class BookstoreController {
 		System.out.println(book);
 		ModelAndView model = new ModelAndView();
 		model.addObject("book", book);
-		bookstoreService.editPrice(book);
 		model.setViewName("index");
 		return model;
 		

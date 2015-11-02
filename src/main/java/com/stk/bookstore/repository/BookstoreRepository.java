@@ -60,9 +60,5 @@ public class BookstoreRepository {
 		
 	}
 	
-	public void updatePrice(BookEntity bookEntity){
-		em.merge(bookEntity);
-		
-	}
 
 }
