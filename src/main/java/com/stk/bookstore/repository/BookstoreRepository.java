@@ -57,6 +57,11 @@ public class BookstoreRepository {
 	
 	public void deleteBook(Integer id){
 		em.remove(em.find(BookEntity.class, id));
+		
+	}
+	
+	public void updatePrice(){
+		
 	}
 
 }

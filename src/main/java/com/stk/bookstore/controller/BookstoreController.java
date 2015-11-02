@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.stk.bookstore.model.BookEntity;
 import com.stk.bookstore.model.CategoryEntity;
 import com.stk.bookstore.repository.BookstoreRepository;
 import com.stk.bookstore.service.BookstoreService;
@@ -50,10 +51,23 @@ public class BookstoreController {
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/delete/{id}")
 	public String deleteBook(@PathVariable Integer id){
-		
 		bookstoreService.removeBook(id);
-		
 		return "index";
+	}
+	
+	
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/edit/{id}")
+	public ModelAndView showUpdatePricePage (@PathVariable Integer id){
+		ModelAndView model = new ModelAndView();
+		model.addObject("books", bookstoreService.getBookById(id));
+		model.setViewName("update");
+		return model;
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "edit/editbook/")
+	public void editBook(BookEntity book){
+		System.out.println(book);
 	}
 
 }

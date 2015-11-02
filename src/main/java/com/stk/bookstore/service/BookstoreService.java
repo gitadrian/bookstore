@@ -43,4 +43,8 @@ public class BookstoreService {
 		bookstoreRepository.deleteBook(id);
 	}
 	
+	public void editPrice(){
+		
+	}
+	
 }
