@@ -61,16 +61,18 @@ public class BookstoreController {
 	@RequestMapping(method = RequestMethod.GET, value = "/edit/{id}")
 	public ModelAndView showUpdatePricePage (@PathVariable Integer id){
 		ModelAndView model = new ModelAndView();
-		model.addObject("books", bookstoreService.getBookById(id));
+		model.addObject("book1", bookstoreService.getBookById(id));
+		System.out.println(bookstoreService.getBookById(id));
 		model.setViewName("update");
 		return model;
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, value = "edit/editbook")
-	public ModelAndView editBook(@ModelAttribute BookEntity book){
-		System.out.println(book);
+	@RequestMapping(method = RequestMethod.POST, value = "/editbook")
+	public ModelAndView editBook(@ModelAttribute BookEntity book1){
+		System.out.println("book from form: "+book1);
+		bookstoreService.editBook(book1.getPrice(), book1.getBook_id());
 		ModelAndView model = new ModelAndView();
-		model.addObject("book", book);
+		model.addObject("book1", book1);
 		model.setViewName("index");
 		return model;
 		

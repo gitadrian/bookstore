@@ -8,7 +8,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form:form commandName="books" method="GET" action="editbook">
+	<form:form commandName="book1" method="POST" action="${pageContext.request.contextPath}/editbook">
+		
+		<form:hidden path="book_id" />
+	
 		Price:
 		<form:input path="price"/>
 		<input type="submit">

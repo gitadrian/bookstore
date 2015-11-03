@@ -67,8 +67,9 @@
 		<security:intercept-url pattern="/admin*" access="ROLE_ADMIN"/>
 		<security:intercept-url pattern="/createbook" access="ROLE_ADMIN"/>
 		<security:intercept-url pattern="/createbookaction" access="ROLE_ADMIN"/>
-		<security:intercept-url pattern="/edit*" access="ROLE_ADMIN"/>
-		<security:intercept-url pattern="/delete*" access="ROLE_ADMIN"/>
+		<security:intercept-url pattern="/edit/*" access="ROLE_ADMIN"/>
+		<security:intercept-url pattern="/delete/*" access="ROLE_ADMIN"/>
+		<security:intercept-url pattern="/addtocart/*" access="ROLE_USER"/>
 		<security:form-login login-page=""/>
 		<security:logout logout-url="" logout-success-url=""/>
 		
@@ -77,7 +78,8 @@
 	<security:authentication-manager>
 		<security:authentication-provider>
 			<security:user-service>
-				<security:user name="admin" password="123" authorities="ROLE_ADMIN"/>
+				<security:user name="admin" password="123" authorities="ROLE_ADMIN,ROLE_USER"/>
+				<security:user name="user" password="123" authorities="ROLE_USER"/>
 			</security:user-service>
 		</security:authentication-provider>
 	</security:authentication-manager>

@@ -43,5 +43,8 @@ public class BookstoreService {
 		bookstoreRepository.deleteBook(id);
 	}
 	
+	public void editBook(Float newPrice, Integer id){
+		bookstoreRepository.updateBook(newPrice, id);
+	}
 	
 }

@@ -16,7 +16,7 @@
 	<li>${books.publisher}</li>
 	<li>${books.category_Id.name}</li>
 	<li>$${books.price}</li>
-	<li><a href="addtocart/${books.book_id}">Add to cart</a></li>
+	<li><a href="${pageContext.request.contextPath}/addtocart/${books.book_id}">Add to cart</a></li>
 
 </ul>
 	
