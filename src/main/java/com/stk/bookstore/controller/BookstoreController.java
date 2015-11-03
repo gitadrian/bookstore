@@ -73,7 +73,7 @@ public class BookstoreController {
 		bookstoreService.editBook(book1.getPrice(), book1.getBook_id());
 		ModelAndView model = new ModelAndView();
 		model.addObject("book1", book1);
-		model.setViewName("index");
+		model.setViewName("admin");
 		return model;
 		
 	}

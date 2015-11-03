@@ -13,11 +13,16 @@ create table CATEGORY(category_id integer primary key identity, name varchar(45)
 
 create table BOOK(book_id integer primary key identity, title varchar(45), year integer, publisher varchar(45), category_id integer, price float, quantity integer, description varchar(400), foreign key(category_id) references CATEGORY(category_id));
 
-create table AUTHOR(authorId integer primary key identity, name varchar(45));
 
-create table ADMIN(userId varchar(10) primary key, password varchar(45));
 
-create table BOOK_AUTHOR(book_id integer, authorId integer, primary key(book_id,authorId),foreign key(book_id) references BOOK(book_id),foreign key(authorId) references AUTHOR(authorId));
+create table users(username varchar(10) primary key, password varchar(45), enabled boolean);
+
+insert into users(username,password,enabled) values ('admin','123',true);
+
+create table authorities(username varchar(10), authority varchar(15));
+
+insert into authorities(username, authority) values('admin','ROLE_ADMIN');
+insert into authorities(username, authority) values('admin','ROLE_USER');
 
 create table CUSTOMER(customerId varchar(15) primary key, password varchar(45), name varchar(45), last_name varchar(45),email varchar(45),phone varchar(15));
 
@@ -34,4 +39,6 @@ insert into CATEGORY(name) values('Science');
 insert into CATEGORY(name) values('Education');
 insert into CATEGORY(name) values('Techonolgy');
 insert into CATEGORY(name) values('Fiction');
+insert into CATEGORY(name) values('Novel');
+
 insert into BOOK(title, year, publisher, category_id, price, quantity, description) values ('Harry Potter', 1998, 'Scholastic', 4, 6.76, 20,'By J.K. Rowling');
