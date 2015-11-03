@@ -13,7 +13,7 @@ public class ShoppingCartController {
 	@RequestMapping(value="/addtocart/{id}", method=RequestMethod.GET)
 	public ModelAndView addToCart(@PathVariable Integer id){
 		ModelAndView model = new ModelAndView();
-		model.setViewName("index");
+		model.setViewName("cart");
 		return model;
 	}
 

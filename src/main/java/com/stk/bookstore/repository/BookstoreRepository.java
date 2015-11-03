@@ -60,9 +60,6 @@ public class BookstoreRepository {
 		
 	}
 	
-//	public void updateBook(Integer newPrice, Integer id){
-//		em.createNativeQuery("UPDATE BOOK SET price =? where book_id =:?").setParameter(newPrice,id).executeUpdate();
-//	}
 	
 	public void updateBook(Float newPrice, Integer id){
 		em.createNativeQuery("UPDATE BOOK SET price =? where book_id =?").setParameter(1, newPrice).setParameter(2, id).executeUpdate();
