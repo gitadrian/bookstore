@@ -123,9 +123,9 @@ public class BookstoreRepository {
 		em.createNativeQuery("INSERT INTO CART_LINE(cart_id, line_amount, book_id) values(:cart_id, :line_amount, :book_id)").setParameter("cart_id", cart_id).setParameter("line_amount", line_amount).setParameter("book_id", book_id).executeUpdate();
 	}
 	
-	public List<CartLineEntity> getCartLinesByUsername(String currentUser){
+	public CartLineEntity getCartLinesByUsername(String currentUser){
 		CartEntity cart_id = getCartIdByUsername(currentUser);
-		return (List<CartLineEntity>)em.createNativeQuery("SELECT * FROM CART_LINE WHERE cart_id=:cart_id").setParameter("cart_id", cart_id).getResultList();
+		return (CartLineEntity)em.createNativeQuery("SELECT * FROM CART_LINE WHERE cart_id=:cart_id").setParameter("cart_id", cart_id).getSingleResult();
 	}
 	
 
