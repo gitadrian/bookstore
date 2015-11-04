@@ -3,6 +3,7 @@ package com.stk.bookstore.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,6 +28,8 @@ public class BookstoreController {
 		ModelAndView model = new ModelAndView();
 		model.addObject("books",bookstoreService.getAllBooks());
 		model.addObject("categories", bookstoreService.getAllCategories());
+  		String currentUser = SecurityContextHolder.getContext().getAuthentication().getName();
+  		model.addObject("user", currentUser);
 		model.setViewName("index");
 		return model;
 	}
