@@ -14,6 +14,11 @@ public class AdminController {
 	@Autowired
 	BookstoreService bookstoreService;
 	
+	/**
+	 * Shows the admin control panel page.
+	 * @return
+	 */
+	
 	@RequestMapping(method = RequestMethod.GET, value = "/admin")
 	public ModelAndView showAdminPage(){
 		ModelAndView model = new ModelAndView();

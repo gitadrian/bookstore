@@ -21,6 +21,11 @@ public class BookstoreController {
 	
 	@Autowired
 	BookstoreService bookstoreService;
+	
+	/**
+	 * Shows the index page containing all the books in the database.
+	 * @return
+	 */
 
 	@RequestMapping(method = RequestMethod.GET, value = "/")
 	public ModelAndView hello() {
@@ -34,6 +39,13 @@ public class BookstoreController {
 		return model;
 	}
 	
+	/**
+	 * Sorts books by category
+	 * @param category
+	 * @return
+	 */
+	
+	
 	@RequestMapping(method = RequestMethod.GET, value = "/category/{category}")
 	public ModelAndView showBooksByCategory(@PathVariable String category) {
 
@@ -44,6 +56,12 @@ public class BookstoreController {
 		return model;
 	}
 	
+	/**
+	 * Shows the details of the selected book.
+	 * @param id
+	 * @return
+	 */
+	
 	@RequestMapping(method = RequestMethod.GET, value = "/bookdetails/{id}")
 	public ModelAndView showBookDetails(@PathVariable Integer id) {
 
@@ -53,13 +71,23 @@ public class BookstoreController {
 		return model;
 	}
 	
+	/**
+	 * Deletes the selected book.
+	 * @param id
+	 * @return
+	 */
+	
 	@RequestMapping(method = RequestMethod.GET, value = "/delete/{id}")
 	public String deleteBook(@PathVariable Integer id){
 		bookstoreService.removeBook(id);
 		return "index";
 	}
 	
-	
+	/**
+	 * Shows a page where the user can edit the price of the selected book.
+	 * @param id
+	 * @return
+	 */
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/edit/{id}")
 	public ModelAndView showUpdatePricePage (@PathVariable Integer id){
@@ -69,6 +97,12 @@ public class BookstoreController {
 		model.setViewName("update");
 		return model;
 	}
+	
+	/**
+	 * Edits the price of the selected book.
+	 * @param book1
+	 * @return
+	 */
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/editbook")
 	public ModelAndView editBook(@ModelAttribute BookEntity book1){

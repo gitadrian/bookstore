@@ -17,6 +17,11 @@ public class CreateBookController {
 	@Autowired
 	private BookstoreService bookstoreService;
 
+	/**
+	 * Shows a form where the user can insert a new book into the database.
+	 * @return
+	 */
+	
 	@RequestMapping(value = "/createbook", method = RequestMethod.GET)
 	public ModelAndView showCreateBookPage() {
 		ModelAndView model = new ModelAndView();
@@ -26,6 +31,12 @@ public class CreateBookController {
 		model.addObject("categories", bookstoreService.getAllCategories());
 		return model;
 	}
+	
+	/**
+	 * Inserts the book into the database.
+	 * @param book
+	 * @return
+	 */
 
 	@RequestMapping(value = "/createbookaction", method = RequestMethod.POST)
 	public ModelAndView createBook(@ModelAttribute("book") BookEntity book) {
