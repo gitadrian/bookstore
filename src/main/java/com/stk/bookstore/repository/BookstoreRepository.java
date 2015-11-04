@@ -12,13 +12,19 @@ import javax.persistence.PersistenceUnit;
 
 
 
+
+
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.stk.bookstore.model.BookEntity;
+import com.stk.bookstore.model.CartEntity;
+import com.stk.bookstore.model.CartLineEntity;
 import com.stk.bookstore.model.CategoryEntity;
 
 @Repository
@@ -103,6 +109,23 @@ public class BookstoreRepository {
 	 */
 	public void updateBook(Float newPrice, Integer id){
 		em.createNativeQuery("UPDATE BOOK SET price =? where book_id =?").setParameter(1, newPrice).setParameter(2, id).executeUpdate();
+	}
+	
+	public CartEntity getCartIdByUsername(String currentUser){
+  		return (CartEntity)em.createNativeQuery("SELECT * FROM CART WHERE username=:currentUser",CartEntity.class).setParameter("currentUser", currentUser).getSingleResult();
+
+	}
+	
+	public void addBookToCart(CartEntity cartEntity, BookEntity book){
+		Float line_amount = book.getPrice();
+		Integer book_id = book.getBook_id();
+		Integer cart_id = cartEntity.getCart_id();
+		em.createNativeQuery("INSERT INTO CART_LINE(cart_id, line_amount, book_id) values(:cart_id, :line_amount, :book_id)").setParameter("cart_id", cart_id).setParameter("line_amount", line_amount).setParameter("book_id", book_id).executeUpdate();
+	}
+	
+	public List<CartLineEntity> getCartLinesByUsername(String currentUser){
+		CartEntity cart_id = getCartIdByUsername(currentUser);
+		return (List<CartLineEntity>)em.createNativeQuery("SELECT * FROM CART_LINE WHERE cart_id=:cart_id").setParameter("cart_id", cart_id).getResultList();
 	}
 	
 

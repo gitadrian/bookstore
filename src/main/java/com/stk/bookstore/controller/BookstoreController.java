@@ -33,8 +33,6 @@ public class BookstoreController {
 		ModelAndView model = new ModelAndView();
 		model.addObject("books",bookstoreService.getAllBooks());
 		model.addObject("categories", bookstoreService.getAllCategories());
-  		String currentUser = SecurityContextHolder.getContext().getAuthentication().getName();
-  		model.addObject("user", currentUser);
 		model.setViewName("index");
 		return model;
 	}
